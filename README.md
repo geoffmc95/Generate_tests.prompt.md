@@ -1,5 +1,11 @@
 # Generate_tests.prompt.md
 Test generation prompt to use with the Playwright MCP server. <br/>
+
+## Dependencies: <br/>
+-Playwright + browsers<br/>
+-[Playwright MCP Server](https://github.com/microsoft/playwright-mcp) <br/>
+-Github workflows 
+
 ## How to use  <br/>
 1. Create the following file structure within your project root folder:<br/>
 ```.github/workflows/Generate_tests.prompt.md<br/>```
@@ -8,7 +14,9 @@ Test generation prompt to use with the Playwright MCP server. <br/>
 3. Adjust the prompt as needed.  
 
 ### Note: 
-You can create additional prompt files to execute specific types of tests, or with different instructions, just make sure theyre under ```.github/workflows/```
+-You can create additional prompt files to execute specific types of tests, or with different instructions, just make sure theyre under ```.github/workflows/```</br>
+-This prompt is configured to write the tests in Typescript, this can be changed if needed.
+
 
 
  
