@@ -242,8 +242,7 @@ test.describe('Feature Name', () => {
 
   // No afterEach needed - Playwright handles cleanup automatically
 });
-```
-```
+
 **Critical Browser Management Rules:**
 - ALWAYS use Playwright's built-in fixtures: `async ({ page }) => { ... }`
 - NEVER manually create or close pages/contexts/browsers
