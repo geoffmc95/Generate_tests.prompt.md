@@ -1,5 +1,23 @@
-# Comprehensive Playwright Test Generation Agent
+## Generate_tests.prompt.md </br>
+### Test generation prompt to use with the Playwright MCP server.
 
+### Dependencies: </br>
+-Playwright + browsers </br>
+-Playwright MCP Server </br>
+-Github Actions (VS Code extension) </br>
+-Github Co-Pilot (VS Code extension) </br>
+
+### How to use </br>
+1. Create the following file structure within your project root folder: </br>
+```.github/workflows/Generate_tests.prompt.md  ``` <br/>
+2.Copy and paste the below text within this file. </br>
+3.Adjust the prompt as needed.</br>
+
+### Note:
+-You can create additional prompt files to execute specific types of tests, or with different instructions, just make sure theyre under .github/workflows/
+-This prompt is configured to write the tests in Typescript, this can be changed if needed.
+
+```
 ---
 tools: ["playwright"]
 mode: "agent"
@@ -156,37 +174,36 @@ if (elementCount !== 1) {
   console.log(`Warning: Locator matches ${elementCount} elements, refining...`);
   // Find more specific locator
 }
-```
 
 ### Locator Refinement Strategies
 When multiple elements match, try these refinements in order:
 
 1. **Add parent container context:**
-   ```
+
    Original: getByRole('button', { name: 'Submit' })
    Refined: locator('#calculator-form').getByRole('button', { name: 'Submit' })
-   ```
+ 
 
 2. **Use more specific attributes:**
-   ```
+
    Original: getByRole('button', { name: 'Submit' })  
    Refined: locator('button[onclick="calculateRange()"]')
-   ```
+
 
 3. **Combine multiple attributes:**
-   ```
+
    Original: getByRole('button', { name: 'Submit' })
    Refined: locator('button.submit-btn[onclick="calculateRange()"]')
-   ```
+
 
 4. **Use position only as last resort:**
-   ```
+  
    Original: getByRole('button', { name: 'Submit' })
    Last Resort: getByRole('button', { name: 'Submit' }).first()
-   ```
+
 
 ### Test Structure Template
-```typescript
+typescript
 import { test, expect } from '@playwright/test';
 
 test.describe('Feature Name', () => {
@@ -226,7 +243,7 @@ test.describe('Feature Name', () => {
   // No afterEach needed - Playwright handles cleanup automatically
 });
 ```
-
+```
 **Critical Browser Management Rules:**
 - ALWAYS use Playwright's built-in fixtures: `async ({ page }) => { ... }`
 - NEVER manually create or close pages/contexts/browsers
@@ -344,3 +361,4 @@ Before generating final test code, ensure:
 - [ ] Test maintainability is optimized
 
 Remember: The goal is not just test coverage, but meaningful coverage that catches real-world issues before they reach production.
+```
